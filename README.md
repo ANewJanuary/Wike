@@ -84,10 +84,10 @@ Get it from the Snap Store.
 To install or update *WikeSauce* on NixOS with one command, run:
 
 ```sh
-git clone https://github.com/ANewJanuary/Wike.git ~/Wike 2>/dev/null || git -C ~/Wike pull; nix-env -if ~/Wike
+git clone https://github.com/ANewJanuary/Wike.git 2>/dev/null || git -C Wike pull; nix-env -if ./Wike
 ```
 
-This clones the repository to `~/Wike` (or pulls the latest changes if it is already there), builds it and installs it into your user profile, so `wikesauce` is on your `PATH` and appears in the app launcher. Run it again to update, and use `nix-env -e wikesauce` to uninstall.
+This clones the repository into a `Wike` folder in the current directory (or pulls the latest changes if it is already there), builds it and installs it into your user profile, so `wikesauce` is on your `PATH` and appears in the app launcher. Run it again from the same directory to update, and use `nix-env -e wikesauce` to uninstall.
 
 To build without installing, use the included `default.nix`:
 
