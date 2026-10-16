@@ -1,14 +1,14 @@
 gnome.compile_resources(
   meson.project_name(),
-  'com.github.hugolabe.Wike.gresource.xml',
+  'com.github.ANewJanuary.WikeSauce.gresource.xml',
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir
 )
 
 desktop_file = i18n.merge_file(
-  input: 'com.github.hugolabe.Wike.desktop.in',
-  output: 'com.github.hugolabe.Wike.desktop',
+  input: 'com.github.ANewJanuary.WikeSauce.desktop.in',
+  output: 'com.github.ANewJanuary.WikeSauce.desktop',
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -23,8 +23,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-  input: 'com.github.hugolabe.Wike.metainfo.xml.in',
-  output: 'com.github.hugolabe.Wike.metainfo.xml',
+  input: 'com.github.ANewJanuary.WikeSauce.metainfo.xml.in',
+  output: 'com.github.ANewJanuary.WikeSauce.metainfo.xml',
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'metainfo')
@@ -39,7 +39,7 @@ if appstreamcli.found()
   )
 endif
 
-install_data('com.github.hugolabe.Wike.gschema.xml',
+install_data('com.github.ANewJanuary.WikeSauce.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
@@ -51,26 +51,26 @@ if compile_schemas.found()
 endif
 
 install_data(
-  'com.github.hugolabe.Wike.SearchProvider.ini',
+  'com.github.ANewJanuary.WikeSauce.SearchProvider.ini',
   install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'gnome-shell', 'search-providers')
 )
 
 configure_file(
-  input: 'com.github.hugolabe.Wike.SearchProvider.service.in',
-  output: 'com.github.hugolabe.Wike.SearchProvider.service',
+  input: 'com.github.ANewJanuary.WikeSauce.SearchProvider.service.in',
+  output: 'com.github.ANewJanuary.WikeSauce.SearchProvider.service',
   configuration: conf,
   install: true,
   install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'dbus-1', 'services')
 )
 
 configure_file(
-  input: 'com.github.hugolabe.Wike.service.in',
-  output: 'com.github.hugolabe.Wike.service',
+  input: 'com.github.ANewJanuary.WikeSauce.service.in',
+  output: 'com.github.ANewJanuary.WikeSauce.service',
   configuration: conf,
   install: true,
   install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'dbus-1', 'services')
 )
 
 icondir = join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor')
-install_data('icons/com.github.hugolabe.Wike.svg', install_dir: join_paths(icondir, 'scalable/apps'))
-install_data('icons/com.github.hugolabe.Wike-symbolic.svg', install_dir: join_paths(icondir, 'symbolic/apps'))
+install_data('icons/com.github.ANewJanuary.WikeSauce.svg', install_dir: join_paths(icondir, 'scalable/apps'))
+install_data('icons/com.github.ANewJanuary.WikeSauce-symbolic.svg', install_dir: join_paths(icondir, 'symbolic/apps'))

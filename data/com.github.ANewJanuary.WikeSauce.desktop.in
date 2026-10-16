@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Wike
+Name=WikeSauce
 Comment=Search and read Wikipedia articles
-Icon=com.github.hugolabe.Wike
-Exec=wike
+Icon=com.github.ANewJanuary.WikeSauce
+Exec=wikesauce
 Terminal=false
 Type=Application
 StartupNotify=true

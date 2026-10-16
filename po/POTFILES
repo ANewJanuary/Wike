@@ -1,5 +1,5 @@
-data/com.github.hugolabe.Wike.desktop.in
-data/com.github.hugolabe.Wike.metainfo.xml.in
+data/com.github.ANewJanuary.WikeSauce.desktop.in
+data/com.github.ANewJanuary.WikeSauce.metainfo.xml.in
 
 # GTK UI
 
@@ -47,6 +47,6 @@ src/prefs.py
 src/search.py
 src/toc.py
 src/view.py
-src/wike-sp.in
+src/wikesauce-sp.in
 src/wikipedia.py
 src/window.py

@@ -1,4 +1,4 @@
-project('wike',
+project('wikesauce',
   version: '3.2.1',
   license: 'GPL3+',
   meson_version: '>= 0.60',
@@ -10,7 +10,7 @@ i18n = import('i18n')
 python = import('python')
 
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.project_name())
-moduledir = join_paths(pkgdatadir, meson.project_name())
+moduledir = join_paths(pkgdatadir, 'wike')
 
 conf = configuration_data()
 conf.set('PYTHON', python.find_installation().full_path())

@@ -8,8 +8,8 @@ SPDX-License-Identifier: GPL-3.0-or-later
 <!-- Main window -->
 <interface>
   <template class="Window" parent="AdwApplicationWindow">
-    <property name="title">Wike</property>
-    <property name="icon-name">com.github.hugolabe.Wike</property>
+    <property name="title">WikeSauce</property>
+    <property name="icon-name">com.github.ANewJanuary.WikeSauce</property>
     <property name="width-request">360</property>
     <property name="height-request">480</property>
 

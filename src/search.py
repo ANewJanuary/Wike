@@ -12,7 +12,7 @@ from wike.languages import LanguagesDialog
 
 # Search panel for sidebar
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/search.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/search.ui')
 class SearchPanel(Adw.Bin):
 
   __gtype_name__ = 'SearchPanel'
@@ -148,7 +148,7 @@ class SearchPanel(Adw.Bin):
 
 # Suggestion row in search suggestions list
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/search-row.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/search-row.ui')
 class SearchRow(Gtk.ListBoxRow):
 
   __gtype_name__ = 'SearchRow'
@@ -168,7 +168,7 @@ class SearchRow(Gtk.ListBoxRow):
 
 # Popover for search settings
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/search-settings.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/search-settings.ui')
 class SettingsPopover(Gtk.Popover):
 
   __gtype_name__ = 'SettingsPopover'
@@ -243,7 +243,7 @@ class SettingsPopover(Gtk.Popover):
 
 # Language row in search settings
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/search-settings-row.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/search-settings-row.ui')
 class SettingsLangsRow(Gtk.ListBoxRow):
 
   __gtype_name__ = 'SettingsLangsRow'
@@ -266,7 +266,7 @@ class SettingsLangsRow(Gtk.ListBoxRow):
       self.check_image.set_from_icon_name('checkmark-symbolic')
     self.id_label.set_label(lang_id)
     if settings.get_boolean('show-flags'):
-      gfile = Gio.File.new_for_uri('resource:///com/github/hugolabe/Wike/icons/scalable/emblems/' + lang_id + '.svg')
+      gfile = Gio.File.new_for_uri('resource:///com/github/ANewJanuary/WikeSauce/icons/scalable/emblems/' + lang_id + '.svg')
       if gfile.query_exists():
         self.flag_image.set_from_icon_name(lang_id)
     else:

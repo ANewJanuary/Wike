@@ -1,3 +1,3 @@
 [D-BUS Service]
-Name=com.github.hugolabe.Wike
+Name=com.github.ANewJanuary.WikeSauce
 Exec=@BIN@ --gapplication-service

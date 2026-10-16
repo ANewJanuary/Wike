@@ -19,16 +19,16 @@ localedir = '@localedir@'
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
-locale.bindtextdomain('wike', localedir)
-locale.textdomain('wike')
-gettext.install('wike', localedir)
+locale.bindtextdomain('wikesauce', localedir)
+locale.textdomain('wikesauce')
+gettext.install('wikesauce', localedir)
 
 if __name__ == '__main__':
   import gi
   from gi.repository import GLib, Gio
 
-  GLib.set_prgname('com.github.hugolabe.Wike')
-  resource = Gio.Resource.load(os.path.join(pkgdatadir, 'wike.gresource'))
+  GLib.set_prgname('com.github.ANewJanuary.WikeSauce')
+  resource = Gio.Resource.load(os.path.join(pkgdatadir, 'wikesauce.gresource'))
   resource._register()
 
   from wike import application

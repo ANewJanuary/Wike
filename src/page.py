@@ -11,7 +11,7 @@ from wike.view import WikiView
 
 # Page box for each tab
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/page.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/page.ui')
 class PageBox(Gtk.Box):
 
   __gtype_name__ = 'PageBox'
@@ -213,7 +213,7 @@ class PageBox(Gtk.Box):
 
 # Status page for view stack
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/page-status.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/page-status.ui')
 class PageStatus(Adw.Bin):
 
   __gtype_name__ = 'PageStatus'
@@ -255,7 +255,7 @@ class PageStatus(Adw.Bin):
       case _:
         self.status_page.set_title(_('Search Wikipedia'))
         self.status_page.set_description(_('Start typing to search Wikipedia articles'))
-        self.status_page.set_icon_name('com.github.hugolabe.Wike')
+        self.status_page.set_icon_name('com.github.ANewJanuary.WikeSauce')
         self.main_page_button.set_visible(True)
         self.random_article_button.set_visible(True)
         self.try_again_button.set_visible(False)

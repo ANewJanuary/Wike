@@ -10,7 +10,7 @@ from wike.data import languages
 
 # Languages dialog to choose user languages
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/languages.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/languages.ui')
 class LanguagesDialog(Adw.Dialog):
 
   __gtype_name__ = 'LanguagesDialog'
@@ -150,7 +150,7 @@ class LanguagesDialog(Adw.Dialog):
 
 # Row in languages list
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/languages-row.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/languages-row.ui')
 class LanguagesRow(Gtk.ListBoxRow):
 
   __gtype_name__ = 'LanguagesRow'

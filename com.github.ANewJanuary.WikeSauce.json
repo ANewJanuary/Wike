@@ -1,9 +1,9 @@
 {
-  "app-id" : "com.github.hugolabe.Wike",
+  "app-id" : "com.github.ANewJanuary.WikeSauce",
   "runtime" : "org.gnome.Platform",
   "runtime-version" : "50",
   "sdk" : "org.gnome.Sdk",
-  "command" : "wike",
+  "command" : "wikesauce",
   "finish-args" : [
     "--share=network",
     "--share=ipc",
@@ -14,7 +14,7 @@
   ],
   "modules" : [
     {
-      "name" : "wike",
+      "name" : "wikesauce",
       "buildsystem" : "meson",
       "builddir" : true,
       "run-tests" : true,

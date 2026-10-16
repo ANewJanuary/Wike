@@ -19,7 +19,7 @@ from wike.toc import TocPanel
 
 # Main window
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/window.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/window.ui')
 class Window(Adw.ApplicationWindow):
 
   __gtype_name__ = 'Window'
@@ -524,7 +524,7 @@ class Window(Adw.ApplicationWindow):
 
   def _open_link_cb(self, action, parameter):
     builder = Gtk.Builder()
-    builder.add_from_resource('/com/github/hugolabe/Wike/gtk/dialogs.ui')
+    builder.add_from_resource('/com/github/ANewJanuary/WikeSauce/gtk/dialogs.ui')
     open_link_dialog = builder.get_object('open_link_dialog')
     link_entry = builder.get_object('link_entry')
 

@@ -14,9 +14,9 @@ from gi.repository import GLib, Gio
 pkgdatadir = '@pkgdatadir@'
 localedir = '@localedir@'
 
-resource = Gio.Resource.load(os.path.join(pkgdatadir, 'wike.gresource'))
+resource = Gio.Resource.load(os.path.join(pkgdatadir, 'wikesauce.gresource'))
 resource._register()
-gettext.install('wike', localedir)
+gettext.install('wikesauce', localedir)
 
 from wike import wikipedia
 from wike.data import settings, languages
@@ -153,7 +153,7 @@ class WikeSearchServiceApplication(Gio.Application):
 
   def __init__(self):
     Gio.Application.__init__(self,
-                             application_id='com.github.hugolabe.Wike.SearchProvider',
+                             application_id='com.github.ANewJanuary.WikeSauce.SearchProvider',
                              flags=Gio.ApplicationFlags.IS_SERVICE,
                              inactivity_timeout=10000)
     self.service_object = WikeSearchService()

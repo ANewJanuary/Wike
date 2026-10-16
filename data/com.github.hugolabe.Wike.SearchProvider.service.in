@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=com.github.hugolabe.Wike.SearchProvider
-Exec=@pkgdatadir@/wike-sp

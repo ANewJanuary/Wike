@@ -27,7 +27,7 @@ class Application(Adw.Application):
   # Initialize app
 
   def __init__(self):
-    super().__init__(application_id='com.github.hugolabe.Wike', flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
+    super().__init__(application_id='com.github.ANewJanuary.WikeSauce', flags=Gio.ApplicationFlags.HANDLES_COMMAND_LINE)
 
     self._window = None
     self._launch_uri = ''
@@ -40,7 +40,7 @@ class Application(Adw.Application):
     Adw.Application.do_startup(self)
 
     self._css_sepia = Gtk.CssProvider()
-    self._css_sepia.load_from_resource('/com/github/hugolabe/Wike/style-sepia.css')
+    self._css_sepia.load_from_resource('/com/github/ANewJanuary/WikeSauce/style-sepia.css')
     self._css_custom = Gtk.CssProvider()
 
     self._style_manager = Adw.StyleManager.get_default()
@@ -186,11 +186,11 @@ class Application(Adw.Application):
 
   def _about_cb(self, action, parameter):
     builder = Gtk.Builder()
-    builder.add_from_resource('/com/github/hugolabe/Wike/gtk/about.ui')
+    builder.add_from_resource('/com/github/ANewJanuary/WikeSauce/gtk/about.ui')
     about_dialog = builder.get_object('about_dialog')
 
-    about_dialog.add_link(_('Source Code'), 'https://github.com/hugolabe/Wike')
-    about_dialog.add_link(_('Report an Issue'), 'https://github.com/hugolabe/Wike/issues')
+    about_dialog.add_link(_('Source Code'), 'https://github.com/ANewJanuary/Wike')
+    about_dialog.add_link(_('Report an Issue'), 'https://github.com/ANewJanuary/Wike/issues')
     about_dialog.add_link(_('Help Translating'), 'https://poeditor.com/join/project?hash=kNgJu4MAum')
     about_dialog.set_developers(['Hugo Olabera <hugolabe@proton.me>', _('Contributors') + ' https://github.com/hugolabe/Wike/graphs/contributors',])
     about_dialog.add_credit_section(_('Flag Icons'), ['HatScripts https://github.com/HatScripts/',])

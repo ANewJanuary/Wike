@@ -12,7 +12,7 @@ from wike.data import settings, languages
 
 # Language links panel for sidebar
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/langlinks.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/langlinks.ui')
 class LanglinksPanel(Adw.Bin):
 
   __gtype_name__ = 'LanglinksPanel'
@@ -172,7 +172,7 @@ class LanguagesFilter(GObject.Object):
 
 # Row on langlinks list
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/langlinks-row.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/langlinks-row.ui')
 class LanglinksRow(Gtk.ListBoxRow):
 
   __gtype_name__ = 'LanglinksRow'
@@ -194,7 +194,7 @@ class LanglinksRow(Gtk.ListBoxRow):
     self.title_label.set_label(title)
 
     if settings.get_boolean('show-flags'):
-      gfile = Gio.File.new_for_uri('resource:///com/github/hugolabe/Wike/icons/scalable/emblems/' + lang + '.svg')
+      gfile = Gio.File.new_for_uri('resource:///com/github/ANewJanuary/WikeSauce/icons/scalable/emblems/' + lang + '.svg')
       if gfile.query_exists():
         self.flag_image.set_from_icon_name(lang)
     else:

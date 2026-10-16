@@ -1,14 +1,14 @@
 configure_file(
-  input: 'wike.in',
-  output: 'wike',
+  input: 'wikesauce.in',
+  output: 'wikesauce',
   configuration: conf,
   install: true,
   install_dir: get_option('bindir')
 )
 
 configure_file(
-  input: 'wike-sp.in',
-  output: 'wike-sp',
+  input: 'wikesauce-sp.in',
+  output: 'wikesauce-sp',
   configuration: conf,
   install: true,
   install_dir: pkgdatadir

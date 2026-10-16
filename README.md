@@ -1,19 +1,18 @@
-[![GNOME Circle](https://gitlab.gnome.org/Teams/Circle/-/raw/master/assets/button/badge.svg)](https://circle.gnome.org)
 [![Please do not theme this app](https://stopthemingmy.app/badge.svg)](https://stopthemingmy.app)
 
-<img src="data/icons/com.github.hugolabe.Wike.svg" alt="Wike" align="left"/>
+<img src="data/icons/com.github.ANewJanuary.WikeSauce.svg" alt="WikeSauce" align="left"/>
 
-# Wike
+# WikeSauce
 
 Search and read Wikipedia articles
 
-> **This is a fork** of [hugolabe/Wike](https://github.com/hugolabe/Wike) that adds custom themes. Otherwise it is the same app.
+> **WikeSauce is a fork** of [hugolabe/Wike](https://github.com/hugolabe/Wike) that adds custom themes. It installs as its own app (command `wikesauce`, app ID `com.github.ANewJanuary.WikeSauce`, data in `~/.local/share/wikesauce`), so it can be installed next to *Wike* without sharing settings, bookmarks or history.
 
 ![](data/screenshots/wike-01.png)
 
 ## Description
 
-*Wike* is a Wikipedia reader for the GNOME Desktop.
+*WikeSauce* is a Wikipedia reader for the GNOME Desktop.
 Provides access to all the content of this online encyclopedia in a native application, with a simpler and distraction-free view of articles.
 
 ### Features
@@ -42,7 +41,7 @@ Changes apply immediately. To edit the theme again, click the color wheel while 
 
 ## Install
 
-The packages below install upstream *Wike*, without custom themes. To get this fork, [build it from source](#build) or download a [release](https://github.com/ANewJanuary/Wike/releases).
+The packages below install upstream *Wike*, without custom themes. To get *WikeSauce*, [build it from source](#build) (source code is attached to each [release](https://github.com/ANewJanuary/Wike/releases)).
 
 
 ### Flatpak
@@ -72,7 +71,7 @@ Get it from the Snap Store.
 
 ### GNOME Builder
 
-*Wike* can be built and run with [GNOME Builder](https://wiki.gnome.org/Apps/Builder).
+*WikeSauce* can be built and run with [GNOME Builder](https://wiki.gnome.org/Apps/Builder).
 
 1. Open GNOME Builder
 2. Click the **Clone Repository** button
@@ -82,31 +81,32 @@ Get it from the Snap Store.
 
 ### NixOS / Nix
 
-Build the nixpkgs `wike` package from this source tree, which takes care of the GTK and Python wrapping:
+The repository includes a `default.nix`:
 
 ```sh
 git clone https://github.com/ANewJanuary/Wike.git
 cd Wike
-nix-build -E 'with import <nixpkgs> {}; wike.overrideAttrs (old: { src = lib.cleanSource ./.; })' --no-out-link
+nix-build
+./result/bin/wikesauce
 ```
 
-Run `bin/wike` inside the store path it prints. To install it on NixOS, add the same override to your configuration:
+To install it on NixOS, add it to your configuration:
 
 ```nix
 environment.systemPackages = [
-  (pkgs.wike.overrideAttrs (old: { src = /path/to/Wike; }))
+  (import /path/to/Wike { inherit pkgs; })
 ];
 ```
 
 ## Translations
 
-You can help translate *Wike* on the [POEditor](https://poeditor.com/join/project?hash=kNgJu4MAum) platform.
+Translations come from upstream *Wike*. You can help translate it on the [POEditor](https://poeditor.com/join/project?hash=kNgJu4MAum) platform.
 
 ## License
 
-*Wike* is released under the terms of the [GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.html).
+*WikeSauce*, like *Wike*, is released under the terms of the [GNU General Public License V3](https://www.gnu.org/licenses/gpl-3.0.html).
 
 All content provided by the app comes from [Wikipedia.org](https://www.wikipedia.org/) and is available under [Creative Commons Attribution-ShareAlike License 4.0](https://creativecommons.org/licenses/by-sa/4.0/) unless otherwise noted.
-*Wike* is an independent development not endorsed by or affiliated with the [Wikimedia Foundation](https://wikimediafoundation.org/).
+*WikeSauce* is an independent development not endorsed by or affiliated with the [Wikimedia Foundation](https://wikimediafoundation.org/).
 
-*Wike* uses a subset of [circle-flags](https://github.com/HatScripts/circle-flags) icons, copyright by [HatScripts](https://github.com/HatScripts), and released under the [MIT license](https://opensource.org/license/mit/).
+*WikeSauce* uses a subset of [circle-flags](https://github.com/HatScripts/circle-flags) icons, copyright by [HatScripts](https://github.com/HatScripts), and released under the [MIT license](https://opensource.org/license/mit/).

@@ -103,7 +103,7 @@ def custom_view_css():
 
 # Dialog to set custom theme base style and colors
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/custom-theme.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/custom-theme.ui')
 class CustomThemeDialog(Adw.PreferencesDialog):
 
   __gtype_name__ = 'CustomThemeDialog'

@@ -11,8 +11,9 @@ from gi.repository import GLib, Gio
 
 # Create app settings object and set data path
 
-settings = Gio.Settings.new('com.github.hugolabe.Wike')
-_data_path = GLib.get_user_data_dir()
+settings = Gio.Settings.new('com.github.ANewJanuary.WikeSauce')
+_data_path = GLib.get_user_data_dir() + '/wikesauce'
+GLib.mkdir_with_parents(_data_path, 0o700)
 
 
 # Wikipedia languages (wikilangs dict: all languages, items dict: user languages)
@@ -26,7 +27,7 @@ class Languages:
   # Load all languages from resource and user languages from file
 
   def __init__(self):
-    gfile = Gio.File.new_for_uri('resource:///com/github/hugolabe/Wike/languages/languages.min.json')
+    gfile = Gio.File.new_for_uri('resource:///com/github/ANewJanuary/WikeSauce/languages/languages.min.json')
     try:
       gfile_contents = gfile.load_contents(None)
     except:

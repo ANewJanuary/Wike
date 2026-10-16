@@ -15,7 +15,7 @@ from wike.customtheme import custom_view_css
 # Initialize network session with cookie manager
 
 network_session = WebKit.NetworkSession.get_default()
-cookies_file_path = GLib.get_user_data_dir() + '/cookies'
+cookies_file_path = GLib.get_user_data_dir() + '/wikesauce/cookies'
 cookie_manager = WebKit.NetworkSession.get_cookie_manager(network_session)
 cookie_manager.set_accept_policy(WebKit.CookieAcceptPolicy.ALWAYS)
 cookie_manager.set_persistent_storage(cookies_file_path, WebKit.CookiePersistentStorage.TEXT)
@@ -40,7 +40,7 @@ class ViewSettings(GObject.GObject):
     self.web_settings.set_default_font_size(settings.get_int('font-size'))
     self.web_settings.set_enable_back_forward_navigation_gestures(True)
 
-    gfile = Gio.File.new_for_uri('resource:///com/github/hugolabe/Wike/styles/view.min.css')
+    gfile = Gio.File.new_for_uri('resource:///com/github/ANewJanuary/WikeSauce/styles/view.min.css')
     try:
       gfile_contents = gfile.load_contents(None)
     except:
@@ -49,7 +49,7 @@ class ViewSettings(GObject.GObject):
     else:
       self._css_view = gfile_contents[1].decode('utf-8')
 
-    gfile = Gio.File.new_for_uri('resource:///com/github/hugolabe/Wike/styles/sepia.min.css')
+    gfile = Gio.File.new_for_uri('resource:///com/github/ANewJanuary/WikeSauce/styles/sepia.min.css')
     try:
       gfile_contents = gfile.load_contents(None)
     except:
@@ -145,7 +145,7 @@ class WikiView(WebKit.WebView):
                    'new-page': (GObject.SIGNAL_RUN_FIRST, None, (str,)),
                    'add-bookmark': (GObject.SIGNAL_RUN_FIRST, None, (str, str, str,)) }
 
-  title = 'Wike'
+  title = 'WikeSauce'
   sections = None
   langlinks = None
 
@@ -308,7 +308,7 @@ class WikiView(WebKit.WebView):
     uri_path = uri_elements[2]
 
     props = None
-    self.title = 'Wike'
+    self.title = 'WikeSauce'
     self.sections = None
     self.langlinks = None
 

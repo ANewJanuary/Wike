@@ -11,7 +11,7 @@ from wike.view import network_session
 
 # Preferences dialog
 
-@Gtk.Template(resource_path='/com/github/hugolabe/Wike/gtk/prefs.ui')
+@Gtk.Template(resource_path='/com/github/ANewJanuary/WikeSauce/gtk/prefs.ui')
 class PrefsDialog(Adw.PreferencesDialog):
 
   __gtype_name__ = 'PrefsDialog'
@@ -44,7 +44,7 @@ class PrefsDialog(Adw.PreferencesDialog):
 
   def _clear_history_button_cb(self, clear_history_button):
     builder = Gtk.Builder()
-    builder.add_from_resource('/com/github/hugolabe/Wike/gtk/dialogs.ui')
+    builder.add_from_resource('/com/github/ANewJanuary/WikeSauce/gtk/dialogs.ui')
     clear_history_dialog = builder.get_object('clear_history_dialog')
 
     clear_history_dialog.connect('response', self._clear_history_response_cb)
@@ -60,7 +60,7 @@ class PrefsDialog(Adw.PreferencesDialog):
 
   def _clear_data_button_cb(self, clear_data_button):
     builder = Gtk.Builder()
-    builder.add_from_resource('/com/github/hugolabe/Wike/gtk/dialogs.ui')
+    builder.add_from_resource('/com/github/ANewJanuary/WikeSauce/gtk/dialogs.ui')
     clear_data_dialog = builder.get_object('clear_data_dialog')
 
     clear_data_dialog.connect('response', self._clear_data_response_cb)

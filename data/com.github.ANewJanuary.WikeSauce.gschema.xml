@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist gettext-domain="wike">
-  <schema id="com.github.hugolabe.Wike" path="/com/github/hugolabe/Wike/">
+<schemalist gettext-domain="wikesauce">
+  <schema id="com.github.ANewJanuary.WikeSauce" path="/com/github/ANewJanuary/WikeSauce/">
 
     <key name="search-language" type="s">
       <default>"en"</default>
