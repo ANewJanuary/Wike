@@ -58,6 +58,16 @@
   </branding>
 
   <releases>
+    <release version="3.3.0" date="2026-10-16">
+      <description translate="no">
+        <ul>
+          <li>Added custom theme with light or dark base style and optional colors.</li>
+          <li>Renamed to WikeSauce, with its own app ID, command and data directory, so it can be installed next to Wike. Settings, bookmarks and history are not carried over from Wike.</li>
+          <li>Added translations: Korean.</li>
+          <li>Updated translations: Polish, Vietnamese.</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.2.1" date="2026-04-30">
       <description translate="no">
         <ul>
