@@ -15,6 +15,7 @@ from gi.repository import GLib, Gio, Gdk, Gtk, Adw, WebKit
 
 from wike.data import settings, languages, history, bookmarks
 from wike.prefs import PrefsDialog
+from wike.customtheme import CustomThemeDialog, custom_app_css
 from wike.window import Window
 from wike.view import network_session
 
@@ -40,6 +41,7 @@ class Application(Adw.Application):
 
     self._css_sepia = Gtk.CssProvider()
     self._css_sepia.load_from_resource('/com/github/hugolabe/Wike/style-sepia.css')
+    self._css_custom = Gtk.CssProvider()
 
     self._style_manager = Adw.StyleManager.get_default()
     theme = settings.get_int('theme')
@@ -53,6 +55,11 @@ class Application(Adw.Application):
         Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), self._css_sepia, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
       case 3:
         self._style_manager.set_color_scheme(Adw.ColorScheme.PREFER_LIGHT)
+      case 4:
+        self._set_custom_theme()
+
+    settings.connect('changed::custom-base', self._settings_custom_changed_cb)
+    settings.connect('changed::custom-colors', self._settings_custom_changed_cb)
 
     action = Gio.SimpleAction.new('prefs', None)
     action.connect('activate', self._prefs_cb)
@@ -73,6 +80,10 @@ class Application(Adw.Application):
 
     action = Gio.SimpleAction.new('theme-dark', None)
     action.connect('activate', self._theme_dark)
+    self.add_action(action)
+
+    action = Gio.SimpleAction.new('theme-custom', None)
+    action.connect('activate', self._theme_custom)
     self.add_action(action)
 
     action = Gio.SimpleAction.new('about', None)
@@ -112,6 +123,7 @@ class Application(Adw.Application):
   def _theme_system(self, action, parameter):
     self._style_manager.set_color_scheme(Adw.ColorScheme.PREFER_LIGHT)
     Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_sepia)
+    Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_custom)
     settings.set_int('theme', 3)
 
   # Set theme light
@@ -119,12 +131,14 @@ class Application(Adw.Application):
   def _theme_light(self, action, parameter):
     self._style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
     Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_sepia)
+    Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_custom)
     settings.set_int('theme', 0)
 
   # Set theme sepia
 
   def _theme_sepia(self, action, parameter):
     self._style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
+    Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_custom)
     Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), self._css_sepia, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
     settings.set_int('theme', 2)
 
@@ -133,7 +147,34 @@ class Application(Adw.Application):
   def _theme_dark(self, action, parameter):
     self._style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
     Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_sepia)
+    Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_custom)
     settings.set_int('theme', 1)
+
+  # Set theme custom and show custom theme dialog
+
+  def _theme_custom(self, action, parameter):
+    Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_sepia)
+    self._set_custom_theme()
+    settings.set_int('theme', 4)
+    custom_theme_dialog = CustomThemeDialog()
+    custom_theme_dialog.present(self._window)
+
+  # Apply custom theme base style and colors
+
+  def _set_custom_theme(self):
+    if settings.get_int('custom-base') == 1:
+      self._style_manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
+    else:
+      self._style_manager.set_color_scheme(Adw.ColorScheme.FORCE_LIGHT)
+    self._css_custom.load_from_string(custom_app_css())
+    Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(), self._css_custom)
+    Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), self._css_custom, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+  # Settings custom theme changed event
+
+  def _settings_custom_changed_cb(self, settings, key):
+    if settings.get_int('theme') == 4:
+      self._set_custom_theme()
 
   # Show preferences dialog
 

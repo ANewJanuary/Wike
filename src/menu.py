@@ -141,6 +141,7 @@ class ThemeSwitcher(Gtk.Box):
   light_button = Gtk.Template.Child()
   sepia_button = Gtk.Template.Child()
   dark_button = Gtk.Template.Child()
+  custom_button = Gtk.Template.Child()
 
   # Set button theme active and connect signals
 
@@ -159,11 +160,18 @@ class ThemeSwitcher(Gtk.Box):
         self.sepia_button.set_active(True)
       case 3:
         self.system_button.set_active(True)
+      case 4:
+        self.custom_button.set_active(True)
 
     self.system_button.connect('toggled', self._system_button_toggled_cb)
     self.light_button.connect('toggled', self._light_button_toggled_cb)
     self.sepia_button.connect('toggled', self._sepia_button_toggled_cb)
     self.dark_button.connect('toggled', self._dark_button_toggled_cb)
+    self.custom_button.connect('toggled', self._custom_button_toggled_cb)
+
+    custom_click = Gtk.GestureClick(propagation_phase=Gtk.PropagationPhase.CAPTURE)
+    custom_click.connect('pressed', self._custom_button_pressed_cb)
+    self.custom_button.add_controller(custom_click)
 
   # On button toggle change to system theme
 
@@ -196,6 +204,28 @@ class ThemeSwitcher(Gtk.Box):
       app = self._window.get_application()
       theme_action = app.lookup_action('theme-dark')
       theme_action.activate()
+
+  # On button toggle change to custom theme and show custom theme dialog
+
+  def _custom_button_toggled_cb(self, button):
+    if button.get_active():
+      self._custom_theme()
+
+  # On button pressed when already active show custom theme dialog again
+
+  def _custom_button_pressed_cb(self, gesture, n_press, x, y):
+    if self.custom_button.get_active():
+      self._custom_theme()
+
+  # Close menu and activate custom theme action
+
+  def _custom_theme(self):
+    popover = self.get_ancestor(Gtk.Popover)
+    if popover:
+      popover.popdown()
+    app = self._window.get_application()
+    theme_action = app.lookup_action('theme-custom')
+    theme_action.activate()
 
 
 # Zoom level widget for view menu

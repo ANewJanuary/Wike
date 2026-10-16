@@ -18,6 +18,7 @@ wike_sources = [
   '__init__.py',
   'application.py',
   'bookmarks.py',
+  'customtheme.py',
   'data.py',
   'history.py',
   'langlinks.py',

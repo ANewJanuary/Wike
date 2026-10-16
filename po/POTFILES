@@ -7,6 +7,7 @@ data/gtk/about.ui
 data/gtk/bookmarks.ui
 data/gtk/bookmarks-menu.ui
 data/gtk/bookmarks-row.ui
+data/gtk/custom-theme.ui
 data/gtk/dialogs.ui
 data/gtk/help-overlay.ui
 data/gtk/history.ui
@@ -35,6 +36,7 @@ data/gtk/zoom-level.ui
 
 src/application.py
 src/bookmarks.py
+src/customtheme.py
 src/data.py
 src/history.py
 src/langlinks.py

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file is part of Wike (com.github.hugolabe.Wike)
+SPDX-FileCopyrightText: 2021-25 Hugo Olabera
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<!-- Custom theme dialog -->
+<interface>
+  <template class="CustomThemeDialog" parent="AdwPreferencesDialog">
+    <property name="title" translatable="yes">Custom Theme</property>
+    <property name="content-height">540</property>
+    <property name="content-width">480</property>
+
+    <!-- Custom theme page -->
+    <child>
+      <object class="AdwPreferencesPage">
+
+        <!-- Group base style -->
+        <child>
+          <object class="AdwPreferencesGroup">
+
+            <!-- Base style selector -->
+            <child>
+              <object class="AdwComboRow" id="base_combo">
+                <property name="title" translatable="yes">Base Style</property>
+                <property name="subtitle" translatable="yes">Used for everything not set below</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Light</item>
+                      <item translatable="yes">Dark</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+          </object>
+        </child>
+
+        <!-- Group colors (rows added in code) -->
+        <child>
+          <object class="AdwPreferencesGroup" id="colors_group">
+            <property name="title" translatable="yes">Colors</property>
+            <property name="description" translatable="yes">Enable a color to override the base style</property>
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+  </template>
+</interface>

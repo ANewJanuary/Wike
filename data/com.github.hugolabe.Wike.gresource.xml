@@ -11,6 +11,7 @@
     <file>gtk/bookmarks.ui</file>
     <file>gtk/bookmarks-menu.ui</file>
     <file>gtk/bookmarks-row.ui</file>
+    <file>gtk/custom-theme.ui</file>
     <file>gtk/dialogs.ui</file>
     <file>gtk/history.ui</file>
     <file>gtk/history-row.ui</file>

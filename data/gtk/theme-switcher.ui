@@ -90,5 +90,26 @@ SPDX-License-Identifier: GPL-3.0-or-later
       </object>
     </child>
 
+    <!-- Custom button -->
+    <child>
+      <object class="GtkCheckButton" id="custom_button">
+        <property name="group">system_button</property>
+        <property name="tooltip-text" translatable="yes">Custom Theme</property>
+        <style>
+          <class name="theme-button"/>
+          <class name="theme-button-custom"/>
+        </style>
+
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">checkmark-symbolic</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+          </object>
+        </child>
+
+      </object>
+    </child>
+
   </template>
 </interface>

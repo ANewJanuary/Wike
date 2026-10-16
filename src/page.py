@@ -111,6 +111,9 @@ class PageBox(Gtk.Box):
             style_manager = Adw.StyleManager.get_default()
             if style_manager.get_dark():
               wikiview.set_wikipedia_skin(True)
+          case 4:
+            if settings.get_int('custom-base') == 1:
+              wikiview.set_wikipedia_skin(True)
 
       case WebKit.LoadEvent.FINISHED:
         tabpage.set_loading(False)

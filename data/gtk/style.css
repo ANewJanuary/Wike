@@ -56,6 +56,10 @@ SPDX-License-Identifier: GPL-3.0-or-later
   background-color: @dark_3;
 }
 
+.theme-button-custom radio {
+  background: conic-gradient(@red_3, @yellow_3, @green_3, @blue_3, @purple_3, @red_3);
+}
+
 /* Sidebar */
 
 .navigation-sidebar > row {

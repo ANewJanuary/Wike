@@ -9,6 +9,7 @@ from gi.repository import GLib, GObject, Gio, Gdk, Gtk, Adw, WebKit
 
 from wike import wikipedia
 from wike.data import settings, languages, bookmarks
+from wike.customtheme import custom_view_css
 
 
 # Initialize network session with cookie manager
@@ -63,6 +64,8 @@ class ViewSettings(GObject.GObject):
     settings.connect('changed::font-size', self._settings_font_size_changed_cb)
     settings.connect('changed::preview-popups', self._settings_preview_popups_changed_cb)
     settings.connect('changed::theme', self._settings_theme_changed_cb)
+    settings.connect('changed::custom-base', self._settings_theme_changed_cb)
+    settings.connect('changed::custom-colors', self._settings_theme_changed_cb)
     self._style_manager.connect('notify::dark', self._system_theme_changed_cb)
 
   # Settings font family changed event
@@ -117,6 +120,10 @@ class ViewSettings(GObject.GObject):
       case 3:
         if self._style_manager.get_dark():
           is_dark = True
+      case 4:
+        style_custom = WebKit.UserStyleSheet(custom_view_css(), WebKit.UserContentInjectedFrames.ALL_FRAMES, WebKit.UserStyleLevel.USER, None, None)
+        self.user_content.add_style_sheet(style_custom)
+        is_dark = settings.get_int('custom-base') == 1
     self.emit('set-skin', is_dark)
 
     if not settings.get_boolean('preview-popups'):
