@@ -7,6 +7,8 @@
 
 Search and read Wikipedia articles
 
+> **This is a fork** of [hugolabe/Wike](https://github.com/hugolabe/Wike) that adds custom themes. Otherwise it is the same app.
+
 ![](data/screenshots/wike-01.png)
 
 ## Description
@@ -25,10 +27,23 @@ Provides access to all the content of this online encyclopedia in a native appli
 - Text search in articles
 - Print articles
 - Light, dark and sepia themes
+- Custom themes with your own colors
 - Desktop and mobile layouts
 - GNOME Shell search integration
 
+## Custom Themes
+
+Open the view menu and click the last circle in the theme switcher (the color wheel). This switches to the custom theme and opens the **Custom Theme** page, where you can set:
+
+- **Base style**: light or dark. It sets the look of everything you don't override, including the Wikipedia article skin.
+- **Colors** (optional): background, text, accent, links, sidebar, and infoboxes and cards. Enable a color to override the base style.
+
+Changes apply immediately. To edit the theme again, click the color wheel while it is selected.
+
 ## Install
+
+The packages below install upstream *Wike*, without custom themes. To get this fork, [build it from source](#build) or download a [release](https://github.com/ANewJanuary/Wike/releases).
+
 
 ### Flatpak
 
@@ -55,13 +70,33 @@ Get it from the Snap Store.
 
 ## Build
 
+### GNOME Builder
+
 *Wike* can be built and run with [GNOME Builder](https://wiki.gnome.org/Apps/Builder).
 
 1. Open GNOME Builder
 2. Click the **Clone Repository** button
-3. Enter `https://github.com/hugolabe/wike.git` in the field **Repository URL**
+3. Enter `https://github.com/ANewJanuary/Wike.git` in the field **Repository URL**
 4. Click the **Clone Project** button
 5. Click the **Run** button to start building application
+
+### NixOS / Nix
+
+Build the nixpkgs `wike` package from this source tree, which takes care of the GTK and Python wrapping:
+
+```sh
+git clone https://github.com/ANewJanuary/Wike.git
+cd Wike
+nix-build -E 'with import <nixpkgs> {}; wike.overrideAttrs (old: { src = lib.cleanSource ./.; })' --no-out-link
+```
+
+Run `bin/wike` inside the store path it prints. To install it on NixOS, add the same override to your configuration:
+
+```nix
+environment.systemPackages = [
+  (pkgs.wike.overrideAttrs (old: { src = /path/to/Wike; }))
+];
+```
 
 ## Translations
 
