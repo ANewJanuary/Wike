@@ -26,7 +26,8 @@ Provides access to all the content of this online encyclopedia in a native appli
 - Text search in articles
 - Print articles
 - Light, dark and sepia themes
-- Custom themes with your own colors
+- Custom themes with your own colors and a translucent background
+- Vim-like keyboard navigation
 - Desktop and mobile layouts
 - GNOME Shell search integration
 
@@ -35,9 +36,25 @@ Provides access to all the content of this online encyclopedia in a native appli
 Open the view menu and click the last circle in the theme switcher (the color wheel). This switches to the custom theme and opens the **Custom Theme** page, where you can set:
 
 - **Base style**: light or dark. It sets the look of everything you don't override, including the Wikipedia article skin.
+- **Background opacity**: make the window, sidebar and article background translucent, so your desktop shows through. Text, images, infoboxes, menus and dialogs stay opaque.
 - **Colors** (optional): background, text, accent, links, sidebar, and infoboxes and cards. Enable a color to override the base style.
 
 Changes apply immediately. To edit the theme again, click the color wheel while it is selected.
+
+## Keyboard Navigation
+
+*WikeSauce* adds vim-like keys on top of the standard shortcuts (press <kbd>Ctrl</kbd>+<kbd>?</kbd> to see them all):
+
+| Key | Action |
+|:----|:-------|
+| <kbd>j</kbd> / <kbd>k</kbd> | Scroll the article down / up |
+| <kbd>Ctrl</kbd>+<kbd>I</kbd> | Open the table of contents and focus it |
+| <kbd>Ctrl</kbd>+<kbd>L</kbd> / <kbd>Ctrl</kbd>+<kbd>B</kbd> / <kbd>Ctrl</kbd>+<kbd>H</kbd> | Open and focus languages / bookmarks / history |
+| <kbd>j</kbd> / <kbd>k</kbd> in a sidebar list | Next / previous entry |
+| <kbd>Enter</kbd> | Open the selected entry |
+| <kbd>Esc</kbd> | Return from the sidebar to the article |
+
+Typing any other letter in the article still starts a Wikipedia search.
 
 ## Install
 
