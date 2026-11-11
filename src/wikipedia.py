@@ -11,7 +11,7 @@ from gi.repository import Soup
 # Create a Soup session and set user agent
 
 session = Soup.Session.new()
-session.set_user_agent('WikeSauce/3.4.0 (https://github.com/ANewJanuary/Wike)')
+session.set_user_agent('WikeSauce/3.4.1 (https://github.com/ANewJanuary/Wike)')
 
 # Get Wikipedia random page
 

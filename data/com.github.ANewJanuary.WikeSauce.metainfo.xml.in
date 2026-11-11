@@ -58,6 +58,14 @@
   </branding>
 
   <releases>
+    <release version="3.4.1" date="2026-11-11">
+      <description translate="no">
+        <ul>
+          <li>Fixed custom theme colors and background opacity being overridden by a desktop-wide GTK stylesheet (gtk.css).</li>
+          <li>Fixed link previews having a transparent background with a translucent custom theme.</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.4.0" date="2026-11-11">
       <description translate="no">
         <ul>

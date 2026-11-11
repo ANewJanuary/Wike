@@ -5,7 +5,7 @@
 
 pkgs.python3Packages.buildPythonApplication {
   pname = "wikesauce";
-  version = "3.4.0";
+  version = "3.4.1";
   pyproject = false; # built with meson
 
   src = pkgs.lib.cleanSource ./.;
