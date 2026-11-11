@@ -1,5 +1,5 @@
 project('wikesauce',
-  version: '3.3.0',
+  version: '3.4.0',
   license: 'GPL3+',
   meson_version: '>= 0.60',
   default_options: [ 'warning_level=2', ],

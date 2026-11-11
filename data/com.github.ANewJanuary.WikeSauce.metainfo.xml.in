@@ -58,6 +58,15 @@
   </branding>
 
   <releases>
+    <release version="3.4.0" date="2026-11-11">
+      <description translate="no">
+        <ul>
+          <li>Added background opacity to custom theme: window, sidebar and article backgrounds can be translucent while text and images stay opaque.</li>
+          <li>Added vim-like keyboard navigation: j/k to scroll articles and move through the table of contents, languages, bookmarks and history.</li>
+          <li>Ctrl+I, Ctrl+L, Ctrl+B and Ctrl+H now move keyboard focus into their sidebar list.</li>
+        </ul>
+      </description>
+    </release>
     <release version="3.3.0" date="2026-10-16">
       <description translate="no">
         <ul>
