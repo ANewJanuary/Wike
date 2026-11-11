@@ -60,6 +60,7 @@ class Application(Adw.Application):
 
     settings.connect('changed::custom-base', self._settings_custom_changed_cb)
     settings.connect('changed::custom-colors', self._settings_custom_changed_cb)
+    settings.connect('changed::custom-opacity', self._settings_custom_changed_cb)
 
     action = Gio.SimpleAction.new('prefs', None)
     action.connect('activate', self._prefs_cb)

@@ -62,6 +62,12 @@
       <summary>Colors for custom theme (background, foreground, accent, link, sidebar, surface)</summary>
     </key>
 
+    <key name="custom-opacity" type="i">
+      <range min="20" max="100"/>
+      <default>100</default>
+      <summary>Background opacity for custom theme in percent (text and images stay opaque)</summary>
+    </key>
+
     <key name="zoom-level" type="i">
       <default>100</default>
       <summary>Article view magnification level in percent</summary>

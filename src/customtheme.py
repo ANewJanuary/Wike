@@ -43,20 +43,35 @@ def custom_app_css():
   accent = colors.get('accent')
   sidebar = colors.get('sidebar')
   surface = colors.get('surface')
+  opacity = settings.get_int('custom-opacity')
   rules = []
 
-  if background:
+  # With transparency all backgrounds need a concrete color to apply alpha to
+  if opacity < 100 and not background:
+    window_background = DEFAULT_COLORS[settings.get_int('custom-base')]['background']
+  else:
+    window_background = background
+
+  def alpha(color):
+    if opacity < 100:
+      return 'color-mix(in srgb, ' + color + ' ' + str(opacity) + '%, transparent)'
+    return color
+
+  if window_background:
     if not sidebar:
       shade = foreground or ('white' if settings.get_int('custom-base') == 1 else 'black')
-      sidebar = 'color-mix(in srgb, ' + background + ' 92%, ' + shade + ')'
-    for var in ('window-bg-color', 'headerbar-bg-color', 'dialog-bg-color', 'popover-bg-color'):
+      sidebar = 'color-mix(in srgb, ' + window_background + ' 92%, ' + shade + ')'
+    for var in ('window-bg-color', 'headerbar-bg-color'):
+      rules.append('--' + var + ': ' + alpha(window_background) + ';')
+    rules.append('--view-bg-color: ' + alpha(surface or window_background) + ';')
+  if background:
+    for var in ('dialog-bg-color', 'popover-bg-color'):
       rules.append('--' + var + ': ' + background + ';')
   if sidebar:
     for var in ('headerbar-backdrop-color', 'sidebar-bg-color', 'sidebar-backdrop-color', 'secondary-sidebar-bg-color', 'secondary-sidebar-backdrop-color', 'overview-bg-color'):
-      rules.append('--' + var + ': ' + sidebar + ';')
+      rules.append('--' + var + ': ' + alpha(sidebar) + ';')
   if surface or background:
-    for var in ('view-bg-color', 'card-bg-color'):
-      rules.append('--' + var + ': ' + (surface or background) + ';')
+    rules.append('--card-bg-color: ' + (surface or background) + ';')
   if foreground:
     for var in ('window-fg-color', 'view-fg-color', 'headerbar-fg-color', 'sidebar-fg-color', 'secondary-sidebar-fg-color', 'card-fg-color', 'dialog-fg-color', 'popover-fg-color', 'overview-fg-color'):
       rules.append('--' + var + ': ' + foreground + ';')
@@ -65,8 +80,8 @@ def custom_app_css():
     rules.append('--accent-color: ' + accent + ';')
 
   css = ':root {' + ''.join(rules) + '}'
-  if background:
-    css += '.wikiview-status {background-color: ' + background + ';}'
+  if window_background:
+    css += '.wikiview-status {background-color: ' + alpha(window_background) + ';}'
   return css
 
 
@@ -81,7 +96,11 @@ def custom_view_css():
   root_vars = ''
   css = ''
 
-  if background:
+  # With transparency let the translucent window show through the page background
+  if settings.get_int('custom-opacity') < 100:
+    root_vars += '--background-color-base:transparent!important;'
+    css += 'html,body,#mw-mf-viewport,#mw-mf-page-center,.mw-page-container,.mw-body{background:transparent!important}'
+  elif background:
     root_vars += '--background-color-base:' + background + '!important;'
     css += '#mw-mf-page-center,.mw-body{background-color:' + background + '!important}'
   if foreground:
@@ -109,6 +128,7 @@ class CustomThemeDialog(Adw.PreferencesDialog):
   __gtype_name__ = 'CustomThemeDialog'
 
   base_combo = Gtk.Template.Child()
+  opacity_scale = Gtk.Template.Child()
   colors_group = Gtk.Template.Child()
 
   # Bind base style and add a row for each color
@@ -117,6 +137,8 @@ class CustomThemeDialog(Adw.PreferencesDialog):
     super().__init__()
 
     settings.bind('custom-base', self.base_combo, 'selected', Gio.SettingsBindFlags.DEFAULT)
+    settings.bind('custom-opacity', self.opacity_scale.get_adjustment(), 'value', Gio.SettingsBindFlags.DEFAULT)
+    self.opacity_scale.set_format_value_func(lambda scale, value: str(round(value)) + '%')
 
     self._rows = {}
     colors = get_colors()

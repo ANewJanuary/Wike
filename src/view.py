@@ -66,6 +66,8 @@ class ViewSettings(GObject.GObject):
     settings.connect('changed::theme', self._settings_theme_changed_cb)
     settings.connect('changed::custom-base', self._settings_theme_changed_cb)
     settings.connect('changed::custom-colors', self._settings_theme_changed_cb)
+    self._transparent = settings.get_int('custom-opacity') < 100
+    settings.connect('changed::custom-opacity', self._settings_custom_opacity_changed_cb)
     self._style_manager.connect('notify::dark', self._system_theme_changed_cb)
 
   # Settings font family changed event
@@ -87,6 +89,14 @@ class ViewSettings(GObject.GObject):
 
   def _settings_theme_changed_cb(self, settings, key):
     self.set_style()
+
+  # Custom opacity changed event (article style only changes when transparency turns on or off)
+
+  def _settings_custom_opacity_changed_cb(self, settings, key):
+    transparent = settings.get_int('custom-opacity') < 100
+    if transparent != self._transparent:
+      self._transparent = transparent
+      self.set_style()
 
   # System theme changed event
 
