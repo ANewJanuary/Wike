@@ -89,6 +89,15 @@ class Window(Adw.ApplicationWindow):
     self.history_panel = HistoryPanel(self)
     history_stack_page = self.panel_stack.add_named(self.history_panel, 'history')
 
+    self._panel_lists = { 'toc': self.toc_panel.toc_list,
+                          'langlinks': self.langlinks_panel.langlinks_list,
+                          'bookmarks': self.bookmarks_panel.bookmarks_list,
+                          'history': self.history_panel.history_list }
+
+    panel_key_controller = Gtk.EventControllerKey(propagation_phase=Gtk.PropagationPhase.CAPTURE)
+    panel_key_controller.connect('key-pressed', self._panel_key_pressed_cb)
+    self.panel_stack.add_controller(panel_key_controller)
+
     self.page = PageBox(self, None)
 
     if launch_uri != '':
@@ -329,21 +338,72 @@ class Window(Adw.ApplicationWindow):
 
   def _show_toc_cb(self, action, parameter):
     self.toc_button.set_active(True)
+    self._move_panel_focus('toc', 0)
 
   # Select langlinks in panel
 
   def _show_langlinks_cb(self, action, parameter):
     self.langlinks_button.set_active(True)
+    self._move_panel_focus('langlinks', 0)
 
   # Select bookmarks in panel
 
   def _show_bookmarks_cb(self, action, parameter):
     self.bookmarks_button.set_active(True)
+    self._move_panel_focus('bookmarks', 0)
 
   # Select history in panel
 
   def _show_history_cb(self, action, parameter):
     self.history_button.set_active(True)
+    self._move_panel_focus('history', 0)
+
+  # Move focus to next (step 1), previous (step -1) or current (step 0) row in panel list
+
+  def _move_panel_focus(self, name, step):
+    list_box = self._panel_lists[name]
+
+    rows = []
+    index = 0
+    while row := list_box.get_row_at_index(index):
+      if row.get_activatable() and row.get_child_visible():
+        rows.append(row)
+      index += 1
+    if not rows:
+      return
+
+    focus = self.get_focus()
+    if focus and not isinstance(focus, Gtk.ListBoxRow):
+      focus = focus.get_ancestor(Gtk.ListBoxRow)
+
+    if focus in rows:
+      index = min(max(rows.index(focus) + step, 0), len(rows) - 1)
+    else:
+      index = len(rows) - 1 if step < 0 else 0
+    rows[index].grab_focus()
+
+  # Vim like keys in panel lists: j/k move between rows, Escape returns to article
+
+  def _panel_key_pressed_cb(self, controller, keyval, keycode, state):
+    name = self.panel_stack.get_visible_child_name()
+    if name not in self._panel_lists or isinstance(self.get_focus(), Gtk.Editable):
+      return False
+    if state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.ALT_MASK | Gdk.ModifierType.SUPER_MASK):
+      return False
+
+    match keyval:
+      case Gdk.KEY_j:
+        self._move_panel_focus(name, 1)
+      case Gdk.KEY_k:
+        self._move_panel_focus(name, -1)
+      case Gdk.KEY_Escape:
+        if self.panel_split.get_collapsed():
+          self.panel_split.set_show_sidebar(False)
+        else:
+          self.page.set_focus()
+      case _:
+        return False
+    return True
 
   # On pin panel action set collapsed state
 

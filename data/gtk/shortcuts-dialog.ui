@@ -213,6 +213,27 @@ SPDX-License-Identifier: GPL-3.0-or-later
           </object>
         </child>
 
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Scroll article down / up</property>
+            <property name="accelerator">j k</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Next / previous item in sidebar list</property>
+            <property name="accelerator">j k</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="AdwShortcutsItem">
+            <property name="title" translatable="yes" context="shortcut window">Back to article from sidebar</property>
+            <property name="accelerator">Escape</property>
+          </object>
+        </child>
+
       </object>
     </child>
 

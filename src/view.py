@@ -178,6 +178,11 @@ class WikiView(WebKit.WebView):
 
     self.evaluate_javascript(script, -1, None, None, None)
 
+  # Scroll article vertically by a number of steps (negative scrolls up)
+
+  def scroll_lines(self, lines):
+    self.evaluate_javascript('window.scrollBy(0, ' + str(lines * 60) + ')', -1, None, None, None)
+
   # Settings zoom level changed event
 
   def _zoom_level_changed_cb(self, settings, key):

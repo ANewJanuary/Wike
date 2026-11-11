@@ -79,6 +79,10 @@ class PageBox(Gtk.Box):
   # Manage webkit key pressed and redirect to window
 
   def _event_controller_key_pressed_cb(self, event_controller, keyval, keycode, state, allow_keys):
+    modifiers = state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.ALT_MASK | Gdk.ModifierType.SUPER_MASK)
+    if keyval in (Gdk.KEY_j, Gdk.KEY_k) and not modifiers:
+      self.wikiview.scroll_lines(1 if keyval == Gdk.KEY_j else -1)
+      return True
     if keyval in allow_keys or state is Gdk.ModifierType.CONTROL_MASK:
       return False
     else:
