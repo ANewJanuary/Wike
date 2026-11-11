@@ -100,6 +100,10 @@ def custom_view_css():
   if settings.get_int('custom-opacity') < 100:
     root_vars += '--background-color-base:transparent!important;'
     css += 'html,body,#mw-mf-viewport,#mw-mf-page-center,.mw-page-container,.mw-body{background:transparent!important}'
+    # Keep link previews and reference drawer opaque so their text stays readable
+    opaque = background or DEFAULT_COLORS[settings.get_int('custom-base')]['background']
+    css += '.mwe-popups,.drawer{--background-color-base:' + opaque + '!important}'
+    css += '.mwe-popups .mwe-popups-container,.drawer{background-color:' + opaque + '!important}'
   elif background:
     root_vars += '--background-color-base:' + background + '!important;'
     css += '#mw-mf-page-center,.mw-body{background-color:' + background + '!important}'
